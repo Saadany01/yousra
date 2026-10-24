@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>عشان يسرا</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;600;800&family=Cairo:wght@500;700;800&display=swap">
+<style>
+/* Layout: one flowing RTL scroll — giant-name hero, a handwritten letter, four "she is" cards, the game, a sign-off */
+:root {
+  --bg: #f5efff; --surface: #ffffff; --ink: #2a0f4a; --muted: #6f5a8a;
+  --rose: #8a3ffc; --peach: #d46bff; --lilac: #5b5bff; --line: #e4d6fb;
+  --display: "Baloo Bhaijaan 2", "Geeza Pro", Tahoma, system-ui, sans-serif;
+  --hand: "Cairo", "Geeza Pro", Tahoma, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #140a24; --surface: #1f1236; --ink: #f1e8ff; --muted: #b39dd6;
+  --rose: #b07cff; --peach: #e08cff; --lilac: #8a8cff; --line: #33224f; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #140a24; --surface: #1f1236; --ink: #f1e8ff; --muted: #b39dd6;
+  --rose: #b07cff; --peach: #e08cff; --lilac: #8a8cff; --line: #33224f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--display); font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+button { font: inherit; }
+:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* hero */
+.hero { position: relative; overflow: hidden; }
+#sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .wrap { position: relative; padding-block: 64px 56px; }
+.eyebrow { font-family: var(--hand); font-size: 28px; color: var(--rose); margin: 0; transform: rotate(2deg); display: inline-block; }
+.name { font-size: clamp(110px, 28vw, 280px); font-weight: 800; line-height: 1.1; margin: 0 0 8px;
+  background: linear-gradient(260deg, var(--rose) 10%, var(--peach) 55%, var(--lilac) 95%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tagline { font-size: clamp(24px, 4vw, 38px); font-weight: 600; margin: 0; max-width: 24ch; text-wrap: balance; }
+.tagline span { font-family: var(--hand); color: var(--rose); font-weight: 700; }
+.cta { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { border: 0; border-radius: 999px; padding: 10px 24px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn-main { background: var(--rose); color: #fff; box-shadow: 0 8px 24px -8px var(--rose); }
+.btn-main:hover { transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--ink); border: 2px solid var(--line); }
+.btn-ghost:hover { border-color: var(--rose); }
+
+section { padding-block: 56px; }
+h2 { font-size: clamp(34px, 5.5vw, 56px); font-weight: 800; line-height: 1.2; margin: 0 0 24px; text-wrap: balance; }
+h2 em { font-style: normal; font-family: var(--hand); color: var(--rose); font-weight: 700; font-size: .8em; }
+
+/* letter */
+.letter { background: var(--surface); border-radius: 28px 4px 28px 4px; padding: 44px clamp(20px, 5vw, 56px) 36px; max-width: 720px; margin: 0 auto; box-shadow: 0 30px 60px -40px var(--rose); transform: rotate(.6deg); position: relative; }
+.letter::before { content: "✉️"; position: absolute; top: -26px; inset-inline-end: 28px; font-size: 48px; transform: rotate(-12deg); }
+.letter p { font-family: var(--hand); font-weight: 600; font-size: clamp(20px, 3vw, 25px); line-height: 1.9; margin: 0 0 14px; }
+.letter b { color: var(--rose); }
+.letter .from { text-align: end; color: var(--muted); margin: 10px 0 0; font-size: clamp(20px, 3vw, 25px); }
+
+/* she is */
+.traits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.trait { background: var(--surface); border: 2px solid var(--line); border-radius: 24px; padding: 24px; cursor: pointer; text-align: start; color: var(--ink); transition: transform .2s, border-color .2s; }
+.trait:hover { transform: translateY(-4px) rotate(1deg); border-color: var(--rose); }
+.trait .big { font-size: 46px; line-height: 1; display: block; margin-bottom: 12px; }
+.trait h3 { font-size: 32px; font-weight: 800; margin: 0; line-height: 1.3; }
+.trait p { color: var(--muted); margin: 0; font-size: 17px; }
+.trait .reveal { font-family: var(--hand); color: var(--rose); font-size: 23px; margin-top: 8px; display: block; min-height: 1.6em; }
+
+/* game */
+.game-card { background: var(--surface); border-radius: 28px; padding: clamp(16px, 3vw, 28px); border: 2px solid var(--line); }
+.hud { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; font-weight: 600; }
+.hud b { color: var(--rose); font-variant-numeric: tabular-nums; }
+.bar { flex: 1; min-width: 140px; height: 12px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.bar span { display: block; height: 100%; width: 0; background: linear-gradient(270deg, var(--rose), var(--peach)); transition: width .25s; }
+.stage { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 16 / 10; max-width: 100%; touch-action: none;
+  background: radial-gradient(120% 90% at 50% 0%, #3a1a6b, #130826 70%); }
+canvas { display: block; width: 100%; height: 100%; }
+.overlay { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; background: rgba(19,8,38,.62); color: #f1e8ff; }
+.overlay h3 { font-size: clamp(26px, 4vw, 38px); margin: 0 0 4px; font-weight: 800; text-wrap: balance; line-height: 1.3; }
+.overlay p { margin: 0 0 16px; color: #d6c2ff; max-width: 40ch; }
+.howto { color: var(--muted); font-size: 16px; margin: 12px 0 0; }
+
+/* garden */
+.garden { position: relative; border-radius: 28px; overflow: hidden; border: 2px solid var(--line); height: clamp(320px, 52vw, 460px); cursor: crosshair; touch-action: manipulation;
+  background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--rose) 14%, var(--surface))); }
+#gardenCv { width: 100%; height: 100%; display: block; }
+.garden-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+.garden-bar .count { margin-inline-start: auto; color: var(--muted); font-weight: 600; }
+.garden-bar .count b { color: var(--rose); font-variant-numeric: tabular-nums; }
+.garden-word { position: absolute; transform: translate(-50%, 0); font-family: var(--hand); font-weight: 700; font-size: 26px; color: var(--rose); pointer-events: none; animation: rise 1.8s ease-out forwards; white-space: nowrap; }
+@keyframes rise { from { opacity: 0; translate: 0 10px; } 20% { opacity: 1; } to { opacity: 0; translate: 0 -70px; } }
+
+/* open-when cards */
+.envelopes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.env { perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer; min-height: 200px; color: var(--ink); text-align: start; }
+.env-inner { position: relative; width: 100%; height: 100%; min-height: 200px; transition: transform .6s; transform-style: preserve-3d; }
+.env.open .env-inner { transform: rotateY(180deg); }
+.env-face { position: absolute; inset: 0; border-radius: 24px; padding: 22px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; gap: 8px; }
+.env-front { background: linear-gradient(150deg, var(--rose), var(--lilac)); color: #fff; justify-content: space-between; }
+.env-front .emo { font-size: 44px; line-height: 1; }
+.env-front h3 { margin: 0; font-size: 24px; line-height: 1.35; font-weight: 800; }
+.env-front small { opacity: .85; font-size: 15px; }
+.env-back { background: var(--surface); border: 2px solid var(--rose); transform: rotateY(180deg); justify-content: center; }
+.env-back p { margin: 0; font-family: var(--hand); font-weight: 600; font-size: 19px; line-height: 1.6; }
+
+/* memory game */
+.memo { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; max-width: 520px; margin: 0 auto; }
+.card { aspect-ratio: 1; border-radius: 18px; border: 0; cursor: pointer; font-size: clamp(30px, 8vw, 46px); background: linear-gradient(150deg, var(--rose), var(--lilac)); color: #fff; transition: transform .25s, background .25s; display: grid; place-items: center; }
+.card:hover { transform: scale(1.04); }
+.card.up, .card.done { background: var(--bg); border: 2px solid var(--line); }
+.card.done { border-color: var(--rose); cursor: default; }
+.card:not(.up):not(.done) span { visibility: hidden; }
+.card:not(.up):not(.done)::after { content: "؟"; font-size: .7em; font-weight: 800; position: absolute; }
+.card { position: relative; }
+.memo-bar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; margin-top: 16px; font-weight: 600; }
+.memo-bar b { color: var(--rose); font-variant-numeric: tabular-nums; }
+#memoMsg { font-family: var(--hand); color: var(--rose); font-size: 26px; text-align: center; min-height: 1.6em; margin: 10px 0 0; }
+@media (prefers-reduced-motion: reduce) { .env-inner, .card { transition: none; } .garden-word { animation-duration: .01s; } }
+
+/* stats */
+.stats { display: grid; gap: 18px; max-width: 760px; }
+.stat-row { display: grid; grid-template-columns: 9em minmax(0, 1fr) 3.5em; gap: 14px; align-items: center; font-weight: 600; }
+@media (max-width: 520px) { .stat-row { grid-template-columns: 7em minmax(0, 1fr) 3em; font-size: 16px; } }
+.meter { height: 20px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.meter span { display: block; height: 100%; width: 100%; border-radius: 999px; background: linear-gradient(270deg, var(--rose), var(--peach)); animation: fill 1.6s cubic-bezier(.2,.8,.2,1) both; }
+.stat-row .val { color: var(--rose); font-weight: 800; font-variant-numeric: tabular-nums; }
+.stat-row.inf .meter span { background: linear-gradient(270deg, var(--lilac), var(--rose), var(--peach), var(--lilac)); background-size: 300% 100%; animation: fill 1.6s cubic-bezier(.2,.8,.2,1) both, shimmer 3s linear infinite; }
+@keyframes fill { from { width: 0; } }
+@keyframes shimmer { to { background-position: 300% 0; } }
+
+/* bouquet */
+.bq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+@media (max-width: 720px) { .bq { grid-template-columns: 1fr; } }
+.vase-wrap { position: relative; height: 340px; background: var(--surface); border: 2px solid var(--line); border-radius: 28px; overflow: hidden; }
+.vase { z-index: 2; position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px; border-radius: 20px 20px 50px 50px; background: linear-gradient(160deg, var(--lilac), var(--rose)); }
+.vase::before { content: ""; position: absolute; top: -10px; left: -8px; right: -8px; height: 18px; border-radius: 10px; background: var(--rose); }
+.bq-flower { position: absolute; bottom: 100px; left: 50%; width: 4px; height: var(--h, 130px); background: #3f9b5a; border-radius: 2px; transform-origin: 50% 100%; z-index: 1; transition: transform .4s; }
+.bq-flower span { position: absolute; top: -34px; left: 50%; translate: -50% 0; font-size: 44px; line-height: 1; animation: pop .5s cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes pop { from { scale: 0; } }
+.picker { display: flex; flex-wrap: wrap; gap: 10px; }
+.pick { font-size: 34px; width: 64px; height: 64px; border-radius: 18px; border: 2px solid var(--line); background: var(--surface); cursor: pointer; transition: transform .15s; }
+.pick:hover { transform: translateY(-3px); border-color: var(--rose); }
+.bq-side p { color: var(--muted); margin: 0 0 14px; }
+#bqMsg { font-family: var(--hand); color: var(--rose); font-size: 26px; min-height: 1.6em; margin-top: 14px; }
+
+/* quiz */
+.quiz { background: var(--surface); border: 2px solid var(--line); border-radius: 28px; padding: clamp(20px, 4vw, 36px); max-width: 720px; }
+.quiz .step { color: var(--muted); font-weight: 600; margin: 0 0 6px; }
+.quiz h3 { font-size: clamp(24px, 3.6vw, 32px); margin: 0 0 18px; line-height: 1.35; }
+.opts { display: grid; gap: 10px; }
+.opt { text-align: start; padding: 14px 18px; border-radius: 16px; border: 2px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; font-weight: 600; }
+.opt:hover { border-color: var(--rose); }
+.result { text-align: center; }
+.result .trophy { font-size: 72px; line-height: 1; }
+.result h3 { color: var(--rose); }
+
+/* kind words + finale */
+#kind { font-family: var(--hand); font-size: clamp(24px, 4vw, 32px); min-height: 1.6em; margin: 0 0 18px; color: var(--ink); }
+.end-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+#fw { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 60; }
+.music { position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); left: calc(18px + env(safe-area-inset-left, 0px)); z-index: 40; width: 56px; height: 56px; border-radius: 50%; border: 0; cursor: pointer; font-size: 24px; color: #fff; background: linear-gradient(150deg, var(--rose), var(--lilac)); box-shadow: 0 10px 24px -10px var(--rose); }
+.music.on { animation: beat 1s ease-in-out infinite; }
+@keyframes beat { 50% { scale: 1.08; } }
+@media (prefers-reduced-motion: reduce) { .meter span, .bq-flower, .music.on { animation: none !important; } }
+
+/* end */
+.end { text-align: center; padding-block: 56px 88px; }
+.end p { font-family: var(--hand); font-size: clamp(32px, 5.5vw, 50px); margin: 0 0 20px; color: var(--rose); }
+
+.heart { position: fixed; pointer-events: none; font-size: 24px; animation: float 1.4s ease-out forwards; z-index: 50; }
+@keyframes float { to { transform: translateY(-120px) scale(1.5) rotate(-20deg); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .heart { display: none; } .trait, .btn-main { transition: none; } }
+</style>
+
+<div dir="rtl" lang="ar">
+<header class="hero">
+  <canvas id="sky"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">الموقع ده كله معمول عشان <bdi>el 2oz3ah</bdi>…</p>
+    <h1 class="name">يسرا</h1>
+    <p class="tagline">صغيرة في الحجم، بس <span>قد كل حاجة</span> 🤏🌟</p>
+    <div class="cta">
+      <a class="btn btn-main" href="#letter">اقري رسالتك ✉️</a>
+      <a class="btn btn-ghost" href="#garden">ازرعي ورد 🌷</a>
+      <a class="btn btn-ghost" href="#game">العبي 🎮</a>
+    </div>
+  </div>
+</header>
+
+<section id="letter">
+  <div class="wrap">
+    <div class="letter">
+      <p>يا <bdi>2oz3ah</bdi>،</p>
+      <p>عملتلك موقع كامل. أيوه موقع كامل، عشان عارف إنك مش هتطولي توصلي لأي رف عالي، فقلت أجيبلك كل حاجة لحد عندك 😂</p>
+      <p>بس بجد بقى: <b>إنتي قد كل حاجة.</b> صغيرة آه، بس <b>شاطرة</b> و<b>جدعة</b> و<b>قوية</b> أكتر من ناس طولها مترين.</p>
+      <p>ربنا يوفقك في كل حاجة جاية… ويزودك سنتي ولا اتنين 😄</p>
+      <p class="from">— من حد بيقدّرك جدًا (وأطول منك 😎)</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>يسرا هي… <em>(دوسي عليهم لو طولتيهم 😂)</em></h2>
+    <div class="traits">
+      <button class="trait" type="button" data-say="أشطر واحدة في أي مكان 🧠"><span class="big">🧠</span><h3>شاطرة</h3><p>دماغها شغالة على أعلى إعدادات.</p><span class="reveal"></span></button>
+      <button class="trait" type="button" data-say="أجدع واحدة ممكن تعرفها 🤝"><span class="big">🤝</span><h3>جدعة</h3><p>دايمًا موجودة لأي حد محتاجها.</p><span class="reveal"></span></button>
+      <button class="trait" type="button" data-say="مفيش حاجة توقفها 🔥"><span class="big">🔥</span><h3>قوية</h3><p>محدش يقدر يوقفها.</p><span class="reveal"></span></button>
+      <button class="trait" type="button" data-say="أي تحدي؟ خلصانة 💪"><span class="big">💪</span><h3>قد كل حاجة</h3><p>اديها أي حاجة وهتعملها.</p><span class="reveal"></span></button>
+      <button class="trait" type="button" data-say="أحلى الحاجات بتيجي في علب صغيرة 📦"><span class="big">📏</span><h3><bdi>2oz3ah</bdi></h3><p>حجم صغير، مفعول جبار.</p><span class="reveal"></span></button>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="wrap">
+    <h2>إحصائيات يسرا 📊 <em>(رسمي ومتأكدين منه)</em></h2>
+    <div class="stats">
+      <div class="stat-row"><span>الشطارة</span><div class="meter"><span></span></div><span class="val">100%</span></div>
+      <div class="stat-row"><span>الجدعنة</span><div class="meter"><span style="animation-delay:.15s"></span></div><span class="val">100%</span></div>
+      <div class="stat-row"><span>القوة</span><div class="meter"><span style="animation-delay:.3s"></span></div><span class="val">100%</span></div>
+      <div class="stat-row"><span>الإبداع</span><div class="meter"><span style="animation-delay:.45s"></span></div><span class="val">100%</span></div>
+      <div class="stat-row"><span>الطول</span><div class="meter"><span style="width:18%;animation-delay:.6s"></span></div><span class="val">🤏</span></div>
+      <div class="stat-row inf"><span>قد كل حاجة</span><div class="meter"><span style="animation-delay:.75s"></span></div><span class="val">∞</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="garden">
+  <div class="wrap">
+    <h2>جنينة يسرا 🌷 <em>(دوسي عشان تزرعي… الورد هنا أطول منك 😂)</em></h2>
+    <div class="garden" id="garden">
+      <canvas id="gardenCv"></canvas>
+    </div>
+    <div class="garden-bar">
+      <button class="btn btn-main" id="plantRand" type="button">ازرعي وردة 🌸</button>
+      <button class="btn btn-ghost" id="plantMany" type="button">ازرعي جنينة كاملة 💐</button>
+      <button class="btn btn-ghost" id="clearGarden" type="button">ابدأي من الأول</button>
+      <span class="count">في الجنينة <b id="flowerCount">0</b> وردة</span>
+    </div>
+  </div>
+</section>
+
+<section id="bouquet">
+  <div class="wrap">
+    <h2>اعملي باقتك 💐 <em>اختاري الورد اللي يعجبك</em></h2>
+    <div class="bq">
+      <div class="vase-wrap" id="vaseWrap"><div class="vase"></div></div>
+      <div class="bq-side">
+        <p>دوسي على أي وردة عشان تحطيها في الفازة. ممكن لحد ١١ وردة.</p>
+        <div class="picker" id="picker">
+          <button class="pick" type="button">🌷</button><button class="pick" type="button">🌹</button><button class="pick" type="button">🌻</button>
+          <button class="pick" type="button">🌼</button><button class="pick" type="button">🌸</button><button class="pick" type="button">🪻</button>
+          <button class="pick" type="button">🌺</button><button class="pick" type="button">🍀</button>
+        </div>
+        <div class="cta" style="margin-top:16px">
+          <button class="btn btn-main" id="bqDone" type="button">خلصت الباقة ✨</button>
+          <button class="btn btn-ghost" id="bqClear" type="button">فضّي الفازة</button>
+        </div>
+        <p id="bqMsg"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="open-when">
+  <div class="wrap">
+    <h2>افتحي لما… <em>رسايل صغيرة</em></h2>
+    <div class="envelopes">
+      <button class="env" type="button"><div class="env-inner">
+        <div class="env-face env-front"><span class="emo">😮‍💨</span><h3>افتحي لما تكوني متوترة</h3><small>دوسي عشان تفتحي</small></div>
+        <div class="env-face env-back"><p>خدي نفس عميق. إنتي عديتي حاجات أصعب من كده قبل كده، وهتعديها زي كل مرة 💪</p></div>
+      </div></button>
+      <button class="env" type="button"><div class="env-inner">
+        <div class="env-face env-front"><span class="emo">🥱</span><h3>افتحي لما تكوني زهقانة</h3><small>دوسي عشان تفتحي</small></div>
+        <div class="env-face env-back"><p>ازرعي شوية ورد في الجنينة فوق، وبعدين العبي تحت وحاولي تكسري أحسن نتيجة 😄</p></div>
+      </div></button>
+      <button class="env" type="button"><div class="env-inner">
+        <div class="env-face env-front"><span class="emo">🤔</span><h3>افتحي لما تحسي إنك مش قدها</h3><small>دوسي عشان تفتحي</small></div>
+        <div class="env-face env-back"><p>إنتي قد كل حاجة. ده مش كلام وخلاص، ده حقيقة، والموقع ده كله معمول عشان يفكرك بيها 🌟</p></div>
+      </div></button>
+      <button class="env" type="button"><div class="env-inner">
+        <div class="env-face env-front"><span class="emo">🏁</span><h3>افتحي لما تخلصي حاجة صعبة</h3><small>دوسي عشان تفتحي</small></div>
+        <div class="env-face env-back"><p>برافو عليكي! 🎉 محدش اتفاجئ، كلنا كنا عارفين إنك هتعمليها.</p></div>
+      </div></button>
+      <button class="env" type="button"><div class="env-inner">
+        <div class="env-face env-front"><span class="emo">🪜</span><h3>افتحي لما تحتاجي حاجة من رف عالي</h3><small>دوسي عشان تفتحي (لو طولتي 😂)</small></div>
+        <div class="env-face env-back"><p>هاتي كرسي يا <bdi>2oz3ah</bdi> 🪑 أو نادي على أي حد طويل. وفي الحالتين إنتي برضه قدها 💪</p></div>
+      </div></button>
+    </div>
+  </div>
+</section>
+
+<section id="game">
+  <div class="wrap">
+    <h2>لعبة صغيرة <em>عشانك</em></h2>
+    <div class="game-card">
+      <div class="hud">
+        <span>النقط <b id="score">0</b> / 20</span>
+        <span id="lives">❤️❤️❤️</span>
+        <span>أحسن نتيجة <b id="best">0</b></span>
+        <span class="bar"><span id="prog"></span></span>
+      </div>
+      <div class="stage" id="stage" dir="ltr">
+        <canvas id="cv" width="800" height="500"></canvas>
+        <div class="overlay" id="overlay" dir="rtl">
+          <div>
+            <h3 id="ovTitle">امسكي النجوم ⭐</h3>
+            <p id="ovText">امسكي النجوم والكؤوس، وابعدي عن السحاب 🌧️. امسكي 20 وتكسبي!</p>
+            <button class="btn btn-main" id="go" type="button">يلا نبدأ</button>
+          </div>
+        </div>
+      </div>
+      <p class="howto">اتحركي بالأسهم ← → أو بالماوس أو بصباعك.</p>
+    </div>
+  </div>
+</section>
+
+<section id="memory">
+  <div class="wrap">
+    <h2>لعبة الورد 🌻 <em>لاقي كل وردتين شبه بعض</em></h2>
+    <div class="game-card">
+      <div class="memo" id="memo"></div>
+      <p id="memoMsg"></p>
+      <div class="memo-bar">
+        <span>المحاولات <b id="moves">0</b></span>
+        <span>الأزواج <b id="pairs">0</b> / 6</span>
+        <button class="btn btn-ghost" id="memoReset" type="button">العبي من الأول</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="wrap">
+    <h2>اختبار: إنتي قد إيه؟ 🧪 <em>جاوبي بصراحة</em></h2>
+    <div class="quiz" id="quizBox"></div>
+  </div>
+</section>
+
+<footer class="end">
+  <div class="wrap">
+    <p>إنتي قد كل حاجة يا <bdi>2oz3ah</bdi> 🌟</p>
+    <p id="kind">دوسي على الزرار وخدي كلمة حلوة ✨</p>
+    <div class="end-btns">
+      <button class="btn btn-main" id="kindBtn" type="button">كلمة حلوة 💬</button>
+      <button class="btn btn-main" id="love" type="button">صواريخ احتفال 🎆</button>
+    </div>
+  </div>
+</footer>
+
+<canvas id="fw" aria-hidden="true"></canvas>
+<button class="music" id="music" type="button" aria-label="شغلي المزيكا">🎵</button>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const burst = (x, y, n = 8) => { for (let i = 0; i < n; i++) { const h = document.createElement("span"); h.className = "heart"; h.textContent = ["⭐","🌟","✨","🎉"][i % 4]; h.style.left = (x + Math.random() * 80 - 40) + "px"; h.style.top = (y + Math.random() * 30 - 15) + "px"; document.body.appendChild(h); setTimeout(() => h.remove(), 1500); } };
+
+  // floating hearts in the hero
+  const sky = $("sky"), sc = sky.getContext("2d"); let flo = [];
+  function sizeSky() { const r = sky.getBoundingClientRect(); sky.width = r.width * devicePixelRatio; sky.height = r.height * devicePixelRatio; }
+  sizeSky(); addEventListener("resize", sizeSky);
+  for (let i = 0; i < 22; i++) flo.push({ x: Math.random(), y: Math.random(), s: 14 + Math.random() * 26, v: .02 + Math.random() * .04, e: ["🌷","🌸","✨","🌼"][i % 4], p: Math.random() * 6 });
+  function drawSky(t) {
+    sc.clearRect(0, 0, sky.width, sky.height); sc.globalAlpha = .35; sc.textAlign = "center";
+    for (const f of flo) {
+      if (!reduced) { f.y -= f.v / 60; if (f.y < -.1) { f.y = 1.1; f.x = Math.random(); } }
+      sc.font = f.s * devicePixelRatio + "px system-ui, 'Apple Color Emoji', 'Segoe UI Emoji'";
+      sc.fillText(f.e, (f.x + Math.sin(t / 1500 + f.p) * .02) * sky.width, f.y * sky.height);
+    }
+    sc.globalAlpha = 1; if (!reduced) requestAnimationFrame(drawSky);
+  }
+  requestAnimationFrame(drawSky);
+
+  // traits
+  document.querySelectorAll(".trait").forEach(b => b.addEventListener("click", e => {
+    b.querySelector(".reveal").textContent = b.dataset.say; burst(e.clientX, e.clientY, 5);
+  }));
+
+  // game
+  const cv = $("cv"), ctx = cv.getContext("2d"), W = cv.width, H = cv.height, GOAL = 20;
+  const good = ["⭐","🌟","✨","🏆","🎉","💡"], words = ["شاطرة!","جدعة!","قوية!","قد كل حاجة!","عبقرية!","مبدعة!","أسطورة!"];
+  let best = 0; try { best = +localStorage.getItem("yousra-best") || 0; } catch (e) {}
+  $("best").textContent = best;
+  let st, raf, last, keys = {};
+
+  function reset() { st = { x: W / 2, items: [], pops: [], score: 0, lives: 3, spawn: 0, running: true }; hud(); }
+  function hud() {
+    $("score").textContent = st.score; $("lives").textContent = "❤️".repeat(st.lives) + "🤍".repeat(3 - st.lives);
+    $("prog").style.width = Math.min(100, st.score / GOAL * 100) + "%";
+  }
+  function spawn() {
+    const bad = Math.random() < Math.min(.22 + st.score * .012, .42);
+    st.items.push({ x: 30 + Math.random() * (W - 60), y: -30, v: 140 + Math.random() * 80 + st.score * 9, e: bad ? "🌧️" : good[Math.floor(Math.random() * good.length)], bad });
+  }
+  function end(win) {
+    st.running = false; cancelAnimationFrame(raf);
+    if (st.score > best) { best = st.score; $("best").textContent = best; try { localStorage.setItem("yousra-best", best); } catch (e) {} }
+    $("ovTitle").textContent = win ? "كسبتي! 🎉 el 2oz3ah دايمًا بتكسب" : "السحاب كان أطول منك 😂🌧️";
+    $("ovText").textContent = win ? "عشان إنتي قد كل حاجة. شاطرة ✓ جدعة ✓ قوية ✓" : `مسكتي ${st.score} نجمة. جربي تاني، إنتي قدها!`;
+    $("go").textContent = win ? "العبي تاني" : "جربي تاني";
+    $("overlay").hidden = false;
+    if (win) { const r = cv.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 20); }
+  }
+  function loop(now) {
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    if (keys.ArrowLeft) st.x -= 520 * dt; if (keys.ArrowRight) st.x += 520 * dt;
+    st.x = Math.max(55, Math.min(W - 55, st.x));
+    st.spawn -= dt; if (st.spawn <= 0) { spawn(); st.spawn = Math.max(.35, .9 - st.score * .025); }
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.font = "36px system-ui, 'Apple Color Emoji', 'Segoe UI Emoji'";
+    for (const it of st.items) {
+      it.y += it.v * dt; ctx.fillText(it.e, it.x, it.y);
+      if (it.y > H - 74 && it.y < H - 20 && Math.abs(it.x - st.x) < 64) {
+        it.dead = true;
+        if (it.bad) { st.lives--; st.pops.push({ x: it.x, y: it.y, s: "أوبس!", c: "#9fb6ff", t: 0 }); }
+        else { st.score++; st.pops.push({ x: it.x, y: it.y, s: words[Math.floor(Math.random() * words.length)], c: "#d2b0ff", t: 0 }); }
+        hud();
+      } else if (it.y > H + 30) it.dead = true;
+    }
+    st.items = st.items.filter(i => !i.dead);
+
+    ctx.font = "800 26px Cairo, sans-serif";
+    for (const p of st.pops) { p.t += dt; ctx.globalAlpha = Math.max(0, 1 - p.t); ctx.fillStyle = p.c; ctx.fillText(p.s, p.x, p.y - p.t * 60); }
+    ctx.globalAlpha = 1; st.pops = st.pops.filter(p => p.t < 1);
+
+    // the basket
+    const g = ctx.createLinearGradient(st.x - 62, 0, st.x + 62, 0); g.addColorStop(0, "#8a3ffc"); g.addColorStop(1, "#d46bff");
+    ctx.fillStyle = g; ctx.beginPath(); ctx.roundRect(st.x - 62, H - 50, 124, 32, 16); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.font = "800 19px 'Baloo Bhaijaan 2', sans-serif"; ctx.fillText("el 2oz3ah ⭐", st.x, H - 33);
+
+    if (st.score >= GOAL) return end(true);
+    if (st.lives <= 0) return end(false);
+    raf = requestAnimationFrame(loop);
+  }
+  function startGame() { reset(); $("overlay").hidden = true; last = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); }
+
+  $("go").addEventListener("click", startGame);
+  addEventListener("keydown", e => { if (st && st.running && (e.key === "ArrowLeft" || e.key === "ArrowRight")) { keys[e.key] = true; e.preventDefault(); } });
+  addEventListener("keyup", e => { keys[e.key] = false; });
+  const point = e => { if (!st || !st.running) return; const r = cv.getBoundingClientRect(); st.x = (e.clientX - r.left) / r.width * W; };
+  $("stage").addEventListener("pointermove", point);
+  $("stage").addEventListener("pointerdown", point);
+
+  // garden: tap to plant flowers that grow
+  const gEl = $("garden"), gc = $("gardenCv"), gx = gc.getContext("2d");
+  const petalColors = ["#8a3ffc", "#b07cff", "#d46bff", "#ff8fc7", "#ffd23f", "#ffffff", "#ff9a6b", "#6c8cff"];
+  const gWords = ["شاطرة 🌷", "جدعة 🌼", "قوية 🌻", "قد كل حاجة 🌸", "مبدعة ✨", "أسطورة 🌟", "برافو 🎉", "كملي 💪"];
+  let flowers = [], gW = 0, gH = 0, dpr = 1;
+  function sizeGarden() { dpr = devicePixelRatio || 1; gW = gEl.clientWidth; gH = gEl.clientHeight; gc.width = gW * dpr; gc.height = gH * dpr; gx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+  function plant(x, topY, quiet) {
+    const ground = gH - 34;
+    const h = Math.max(70, Math.min(ground - 40, ground - (topY ?? (ground - 90 - Math.random() * (gH * .45)))));
+    flowers.push({ x, h, g: reduced ? 1 : 0, n: 5 + Math.floor(Math.random() * 4), c: petalColors[Math.floor(Math.random() * petalColors.length)],
+      s: 14 + Math.random() * 12, ph: Math.random() * 6, leaf: Math.random() < .5 ? 1 : -1, spin: Math.random() * Math.PI });
+    if (flowers.length > 60) flowers.shift();
+    $("flowerCount").textContent = flowers.length;
+    if (!quiet) {
+      const w = document.createElement("span"); w.className = "garden-word"; w.textContent = gWords[Math.floor(Math.random() * gWords.length)];
+      w.style.left = x + "px"; w.style.top = Math.max(10, ground - h - 60) + "px"; gEl.appendChild(w); setTimeout(() => w.remove(), 1900);
+    }
+  }
+  function drawFlower(f, t) {
+    const ground = gH - 34, e = 1 - Math.pow(1 - Math.min(1, f.g), 3);
+    const sway = reduced ? 0 : Math.sin(t / 900 + f.ph) * 6 * e;
+    const tx = f.x + sway, ty = ground - f.h * e;
+    gx.strokeStyle = "#3f9b5a"; gx.lineWidth = 4; gx.lineCap = "round";
+    gx.beginPath(); gx.moveTo(f.x, ground); gx.quadraticCurveTo(f.x - sway * .5, ground - f.h * e * .5, tx, ty); gx.stroke();
+    if (e > .35) { // leaf
+      const ly = ground - f.h * e * .4, lx = f.x - sway * .25;
+      gx.fillStyle = "#4fb36b"; gx.beginPath(); gx.ellipse(lx + f.leaf * 12, ly, 13 * e, 6 * e, f.leaf * -.6, 0, Math.PI * 2); gx.fill();
+    }
+    const bloom = Math.max(0, (Math.min(1, f.g) - .55) / .45), r = f.s * (1 - Math.pow(1 - bloom, 3));
+    if (r <= 0.5) { gx.fillStyle = "#4fb36b"; gx.beginPath(); gx.arc(tx, ty, 5, 0, Math.PI * 2); gx.fill(); return; }
+    gx.fillStyle = f.c;
+    for (let i = 0; i < f.n; i++) {
+      const a = f.spin + i / f.n * Math.PI * 2 + (reduced ? 0 : t / 6000);
+      gx.beginPath(); gx.ellipse(tx + Math.cos(a) * r * .75, ty + Math.sin(a) * r * .75, r * .62, r * .36, a, 0, Math.PI * 2); gx.fill();
+    }
+    gx.fillStyle = f.c === "#ffd23f" ? "#8a3ffc" : "#ffd23f"; gx.beginPath(); gx.arc(tx, ty, r * .38, 0, Math.PI * 2); gx.fill();
+  }
+  function drawGarden(t) {
+    gx.clearRect(0, 0, gW, gH);
+    gx.fillStyle = "#59b874"; gx.beginPath(); gx.moveTo(0, gH - 34);
+    for (let x = 0; x <= gW; x += 20) gx.lineTo(x, gH - 34 + Math.sin(x / 40) * 4);
+    gx.lineTo(gW, gH); gx.lineTo(0, gH); gx.fill();
+    for (const f of flowers) { if (f.g < 1) f.g = Math.min(1, f.g + 1 / 70); drawFlower(f, t); }
+    requestAnimationFrame(drawGarden);
+  }
+  sizeGarden(); addEventListener("resize", sizeGarden);
+  [.1, .22, .36, .5, .63, .77, .9].forEach(p => plant(p * gW, null, true));
+  requestAnimationFrame(drawGarden);
+  gEl.addEventListener("pointerdown", e => { const r = gEl.getBoundingClientRect(); plant(e.clientX - r.left, e.clientY - r.top); });
+  $("plantRand").addEventListener("click", () => plant(20 + Math.random() * (gW - 40)));
+  $("plantMany").addEventListener("click", () => { for (let i = 0; i < 12; i++) setTimeout(() => plant(20 + Math.random() * (gW - 40), null, i % 3 !== 0), i * 120); });
+  $("clearGarden").addEventListener("click", () => { flowers = []; $("flowerCount").textContent = 0; });
+
+  // open-when cards
+  document.querySelectorAll(".env").forEach(b => b.addEventListener("click", e => {
+    b.classList.toggle("open"); if (b.classList.contains("open")) burst(e.clientX, e.clientY, 4);
+  }));
+
+  // flower memory game
+  const fl = ["🌷", "🌻", "🌸", "🌼", "🌹", "💐"];
+  let deck, open, moves, pairs, lock;
+  function newMemo() {
+    deck = [...fl, ...fl].sort(() => Math.random() - .5); open = []; moves = 0; pairs = 0; lock = false;
+    $("moves").textContent = 0; $("pairs").textContent = 0; $("memoMsg").textContent = "";
+    $("memo").innerHTML = deck.map((f, i) => `<button class="card" type="button" data-i="${i}" aria-label="كارت ${i + 1}"><span>${f}</span></button>`).join("");
+  }
+  $("memo").addEventListener("click", e => {
+    const c = e.target.closest(".card"); if (!c || lock || c.classList.contains("up") || c.classList.contains("done")) return;
+    c.classList.add("up"); open.push(c);
+    if (open.length < 2) return;
+    moves++; $("moves").textContent = moves;
+    const [a, b] = open;
+    if (deck[a.dataset.i] === deck[b.dataset.i]) {
+      a.classList.add("done"); b.classList.add("done"); open = []; pairs++; $("pairs").textContent = pairs;
+      if (pairs === fl.length) { $("memoMsg").textContent = `برافو! خلصتيها في ${moves} محاولة 🌷`; const r = $("memo").getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 16); }
+    } else { lock = true; setTimeout(() => { a.classList.remove("up"); b.classList.remove("up"); open = []; lock = false; }, 750); }
+  });
+  $("memoReset").addEventListener("click", newMemo);
+  newMemo();
+
+  // bouquet builder
+  const vase = $("vaseWrap"); let bq = [];
+  function layoutBq() {
+    vase.querySelectorAll(".bq-flower").forEach((el, i, all) => {
+      const n = all.length, spread = Math.min(38, 7 * (n - 1)), a = n === 1 ? 0 : -spread + i * (2 * spread / (n - 1));
+      el.style.transform = `translateX(-50%) rotate(${a}deg)`;
+    });
+  }
+  $("picker").addEventListener("click", e => {
+    const b = e.target.closest(".pick"); if (!b) return;
+    if (bq.length >= 11) { $("bqMsg").textContent = "الفازة اتملت! 💐"; return; }
+    const el = document.createElement("span"); el.className = "bq-flower"; el.style.setProperty("--h", (110 + Math.random() * 60) + "px");
+    const head = document.createElement("span"); head.textContent = b.textContent; el.appendChild(head);
+    vase.insertBefore(el, vase.querySelector(".vase")); bq.push(el); layoutBq(); $("bqMsg").textContent = "";
+  });
+  $("bqDone").addEventListener("click", e => {
+    $("bqMsg").textContent = bq.length ? `باقة فيها ${bq.length} وردة، أطول منك بس مش مشكلة 😂 تستاهلي كل حاجة حلوة 🌷` : "حطي ورد الأول 😄";
+    if (bq.length) burst(e.clientX, e.clientY, 8);
+  });
+  $("bqClear").addEventListener("click", () => { bq.forEach(el => el.remove()); bq = []; $("bqMsg").textContent = ""; });
+
+  // quiz: every road leads to the same result
+  const qs = [
+    ["لو قدامك مشكلة صعبة، بتعملي إيه؟", ["أحلها على طول", "أفكر شوية وبعدين أحلها", "أحلها وأساعد غيري كمان"]],
+    ["لو حد صاحبك محتاجك؟", ["أروحله على طول", "أكلمه وأطمن عليه", "الاتنين طبعًا"]],
+    ["عندك امتحان بكرة؟", ["أذاكر", "أذاكر كويس", "أذاكر وأقفل الامتحان"]],
+    ["فيه حاجة على رف عالي، هتعملي إيه؟", ["أنط 🦘", "أجيب كرسي 🪑", "أنادي حد طويل 😂"]],
+    ["إيه أكتر حاجة بتحبيها في الموقع ده؟", ["الجنينة 🌷", "الألعاب 🎮", "كله 😄"]]
+  ];
+  let qi = 0;
+  function renderQuiz() {
+    const box = $("quizBox");
+    if (qi >= qs.length) {
+      box.innerHTML = `<div class="result"><div class="trophy">🏆</div><h3>النتيجة: إنتي قد كل حاجة بنسبة 100%</h3><p style="color:var(--muted)">ما عدا الرفوف العالية 😂 غير كده مكانش فيه أي احتمال تطلع نتيجة تانية</p><button class="btn btn-ghost" id="quizAgain" type="button">اعملي الاختبار تاني</button></div>`;
+      $("quizAgain").addEventListener("click", () => { qi = 0; renderQuiz(); });
+      const r = box.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + 60, 12);
+      return;
+    }
+    const [q, opts] = qs[qi];
+    box.innerHTML = `<p class="step">سؤال ${qi + 1} من ${qs.length}</p><h3>${q}</h3><div class="opts">${opts.map(o => `<button class="opt" type="button">${o}</button>`).join("")}</div>`;
+    box.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => { qi++; renderQuiz(); }));
+  }
+  renderQuiz();
+
+  // random kind words
+  const kinds = ["إنتي أشطر مما تتخيلي 🧠", "أي حاجة صعبة، إنتي أصعب منها 💪", "كملي، إنتي على الطريق الصح 🛤️", "النهارده يومك، استغليه ✨",
+    "إنتي بتعملي فرق مع اللي حواليكي 🌟", "خدي استراحة، إنتي تستاهليها ☕", "متقلقيش، كله هيبقى تمام 🌷", "إنتي قد كل حاجة، متنسيش ده 🏆", "صغيرة في الحجم، كبيرة في الدماغ 🧠", "el 2oz3ah دايمًا بتكسب 😎", "الطول مش كل حاجة، الشطارة هي كل حاجة 😂"];
+  let lastK = -1;
+  $("kindBtn").addEventListener("click", () => { let k; do k = Math.floor(Math.random() * kinds.length); while (k === lastK); lastK = k; $("kind").textContent = kinds[k]; });
+
+  // fireworks
+  const fw = $("fw"), fx = fw.getContext("2d"); let sparks = [], fwOn = false;
+  function sizeFw() { fw.width = innerWidth * devicePixelRatio; fw.height = innerHeight * devicePixelRatio; fx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0); }
+  sizeFw(); addEventListener("resize", sizeFw);
+  const fwColors = ["#b07cff", "#ffd23f", "#ff8fc7", "#6c8cff", "#ffffff", "#d46bff"];
+  function boom(x, y) {
+    const c = fwColors[Math.floor(Math.random() * fwColors.length)];
+    for (let i = 0; i < 60; i++) { const a = Math.random() * Math.PI * 2, v = 2 + Math.random() * 4; sparks.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, l: 1, c }); }
+  }
+  function fwLoop() {
+    fx.clearRect(0, 0, innerWidth, innerHeight);
+    for (const s of sparks) { s.x += s.vx; s.y += s.vy; s.vy += .06; s.vx *= .985; s.l -= .012; fx.globalAlpha = Math.max(0, s.l); fx.fillStyle = s.c; fx.fillRect(s.x, s.y, 3, 3); }
+    fx.globalAlpha = 1; sparks = sparks.filter(s => s.l > 0);
+    if (sparks.length) requestAnimationFrame(fwLoop); else fwOn = false;
+  }
+  $("love").addEventListener("click", () => {
+    if (reduced) { burst(innerWidth / 2, innerHeight / 2, 16); return; }
+    for (let i = 0; i < 8; i++) setTimeout(() => { boom(innerWidth * (.15 + Math.random() * .7), innerHeight * (.15 + Math.random() * .4)); if (!fwOn) { fwOn = true; requestAnimationFrame(fwLoop); } }, i * 280);
+  });
+
+  // music: a small cheerful tune made with Web Audio
+  let actx, musicOn = false, timer, step = 0;
+  const tune = [523, 659, 784, 659, 587, 698, 880, 698, 523, 659, 784, 1047, 988, 784, 659, 587];
+  const bass = [262, 262, 349, 349, 294, 294, 392, 392];
+  function note(f, t, d, vol, type) {
+    const o = actx.createOscillator(), g = actx.createGain(); o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+    o.connect(g).connect(actx.destination); o.start(t); o.stop(t + d + .05);
+  }
+  function tick() {
+    const t = actx.currentTime + .05;
+    note(tune[step % tune.length], t, .35, .12, "triangle");
+    if (step % 2 === 0) note(bass[(step / 2) % bass.length] / 2, t, .6, .08, "sine");
+    step++;
+  }
+  $("music").addEventListener("click", () => {
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume();
+      musicOn = !musicOn; $("music").classList.toggle("on", musicOn); $("music").textContent = musicOn ? "⏸️" : "🎵";
+      clearInterval(timer); if (musicOn) { tick(); timer = setInterval(tick, 260); }
+    } catch (e) { $("music").textContent = "🔇"; }
+  });
+
+  // a still frame behind the start screen
+  ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.font = "36px system-ui, 'Apple Color Emoji', 'Segoe UI Emoji'";
+  [["⭐",160,120],["🏆",420,80],["🌧️",620,170],["✨",280,240],["🌟",540,300]].forEach(([e, x, y]) => ctx.fillText(e, x, y));
+})();
+</script>
+
+</html>
